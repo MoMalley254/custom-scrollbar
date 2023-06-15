@@ -30,7 +30,16 @@
       }
     </style>
   </head>
-  <body>
+  <body id="htmlBody">
+    <div>
+      <form id="form">
+        <label >
+          Choose Image to change cursor  *Should be less than 100*100 pixels*
+          <input type="file" id="inputImage">
+        </label>
+        <button>Save</button>
+      </form>
+    </div>
     <!-- PLACEHOLDER TEXT -->
     <h1>Lorem, ipsum dolor.</h1>
     <h2>Lorem ipsum dolor sit amet consectetur.</h2>
@@ -201,5 +210,26 @@
     >
 
     <!-- PLACEHOLDER TEXT -->
+          
+
+    <script>
+      const htmlPage = document.getElementById('htmlBody');
+      const form = document.getElementById('form');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const inputImage = document.getElementById('inputImage').files[0];
+        const reader = new FileReader(); // Initialize file reader to access local storage
+        reader.onload = function(e) {
+          const cursorImage = new Image();
+          cursorImage.src = e.target.result; // Set image preview
+          htmlPage.style.backgroundImage = inputImage;
+          htmlPage.style.cursor = `url(${cursorImage.src}), auto`;
+        }
+        reader.readAsDataURL(inputImage);
+      });
+    </script>
+
+
   </body>
 </html>
