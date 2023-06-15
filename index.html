@@ -223,7 +223,7 @@
         reader.onload = function(e) {
           const cursorImage = new Image();
           cursorImage.src = e.target.result; // Set image preview
-          htmlPage.style.backgroundImage = inputImage;
+          htmlPage.style.backgroundImage = `url(${cursorImage.src})`;
           htmlPage.style.cursor = `url(${cursorImage.src}), auto`;
         }
         reader.readAsDataURL(inputImage);
